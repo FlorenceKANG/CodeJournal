@@ -1,0 +1,46 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(
+    172deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(15, 11, 70, 0.989233193277311) 100%
+  );
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.balloons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.balloon {
+  border-radius: 50px 50px 10px 50px;
+  transform: rotate(0deg);
+  width: 30px;
+  height: 30px;
+  margin: 0 4px;
+  animation: balloon calc(80s / var(--i)) linear infinite;
+}
+
+@keyframes balloon {
+  0% {
+    transform: translateY(100vh) scale(calc(0.2 * var(--i))) rotate(50deg);
+  }
+  100% {
+    transform: translateY(-10vh) scale(calc(1 / var(--i))) rotate(50deg);
+  }
+}
