@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(
+    118deg,
+    rgba(255, 247, 236, 1) 0%,
+    rgba(255, 255, 232, 0.989233193277311) 100%
+  );
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sun {
+  background-color: #f7da95;
+  border-radius: 50%;
+  box-shadow: inset #fefefe 0 0 0 0.1428571429vmin;
+  width: 20vmin;
+  height: 20vmin;
+  position: relative;
+  animation: shimmer 6s ease alternate infinite;
+}
+
+.ray {
+  position: absolute;
+  top: -7vmin;
+  left: 10vmin;
+  width: 1.25vmin;
+  height: 6.25vmin;
+  transform-origin: 0 17vmin;
+  transform: translateY(25vmin);
+  --rotate: 6deg;
+  --delay: -0.33s;
+  transform: rotate(var(--rotate));
+}
+
+.ray::before,
+.ray::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ebaaca;
+}
+
+.ray:before {
+  height: 20%;
+  border-radius: 100%;
+  transform-origin: 50% 0;
+  animation: flare 1.6s linear infinite;
+  animation-delay: var(--delay);
+}
+
+.ray::after {
+  height: 100%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  animation: wave 0.8s linear alternate infinite;
+  animation-delay: var(--delay);
+}
+
+/* Définir la couleur pour l'enfant paire */
+.ray:nth-child(even)::before,
+.ray:nth-child(even)::after {
+  background-color: #fcdca7;
+}
+
+/* Définir la couleur pour l'enfant 3n+1 */
+.ray.ray:nth-child(3n + 1)::before,
+.ray.ray:nth-child(3n + 1)::after {
+  background-color: #e7a5a5;
+}
+
+/* Animation Wave */
+@keyframes wave {
+  0% {
+    transform: scale(1, 0.5);
+  }
+  50% {
+    transform: scale(1.2, 1.5) translateY(5%);
+  }
+  100% {
+    transform: scale(0.8, 2);
+  }
+}
+
+/* Animation Flare */
+@keyframes flare {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) translate(-4.1666666667vmin);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(0.8) translateY(-8.3333333333vmin);
+  }
+}
+
+/* Animation  */
+@keyframes shimmer {
+  to {
+    transform: rotate(5deg) scale(0.96);
+  }
+}
